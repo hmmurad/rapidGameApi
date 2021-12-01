@@ -1,0 +1,52 @@
+<div class="container">
+  <mat-tab-group mat-align-tabs="center" backgroundColor="primary">
+    <mat-tab label="About">
+      <div class="text-gray-300 text-md space-y-1 p-3">
+        <p *ngIf="game.parent_platforms?.length">
+          Platforms:
+          <span *ngFor="let game of game.parent_platforms; let last = last"
+            >{{ game.platform.name }} <span *ngIf="!last">, &nbsp; </span></span
+          >
+        </p>
+        <p *ngIf="game.publishers?.length">
+          Publishers:
+          <span *ngFor="let publisher of game.publishers; let last = last"
+            >{{ publisher.name }} <span *ngIf="!last">, &nbsp; </span>
+          </span>
+        </p>
+        <p>
+          Website: <a href="game.website">{{ game.website }}</a>
+        </p>
+        <div [innerHTML]="game.description"></div>
+        <p>
+          <span *ngIf="game.ratings[0].title === 'exceptional'">
+            <mat-icon class="mat-18">thumb-up</mat-icon>
+            <span>{{ game.ratings[0].count }}</span>
+          </span>
+          <span *ngIf="game.ratings[3].title === 'skip'">
+            <mat-icon class="mat-18">thumb-down</mat-icon>
+            <span>{{ game.ratings[3].count }}</span>
+          </span>
+        </p>
+      </div>
+    </mat-tab>
+    <mat-tab label="Screenshots" *ngIf="game.screenshots?.length">
+      <div class="grid grid-cols-2 gap-3 py-3">
+        <img
+          *ngFor="let screenshot of game.screenshots"
+          src="{{ screenshot.image }}"
+          alt=""
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="Trailers" *ngIf="game.trailers?.length">
+      <div class="p-3 grid grid-cols-2 gap-3 space-y-2">
+        <video
+          controls
+          *ngFor="let trailers of game.trailers"
+          src="{{ trailers.data?.max }}"
+        ></video>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

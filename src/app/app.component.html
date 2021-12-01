@@ -1,15 +1,6 @@
-<app-header></app-header>
-<div>
-  <router-outlet></router-outlet>
-</div>
-<div class="w-48">
-  <mwl-gauge
-    [max]="100"
-    [dialStartAngle]="-90"
-    [dialEndAngle]="-90.001"
-    [value]="50"
-    [animated]="true"
-    [animationDuration]="2"
-  >
-  </mwl-gauge>
+<div class="bg-gray-700">
+  <app-header></app-header>
+  <div class="">
+    <router-outlet></router-outlet>
+  </div>
 </div>

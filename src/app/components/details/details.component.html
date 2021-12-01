@@ -1,0 +1,102 @@
+<div class="relative h-full" *ngIf="game">
+  <div class="filter blur-sm">
+    <img
+      class="w-full h-96"
+      *ngIf="game.background_image"
+      src="{{ game.background_image }}"
+      alt=""
+    />
+  </div>
+  <div
+    class="
+      flex
+      justify-center
+      items-center
+      text-center
+      absolute
+      top-48
+      right-2/4
+    "
+  >
+    <div class="space-y-1 font-semibold text-sm text-gray-300 stroke-current">
+      <h2 class="text-5xl font-bold">
+        {{ game.name }}
+      </h2>
+      <p>Release: {{ game.released | date }}</p>
+      <p *ngFor="let genre of game.genres; let last = last">
+        {{ genre.name }} <span *ngIf="!last">,</span>
+      </p>
+    </div>
+    <div class="absolute -right-80 -top-12">
+      <mwl-gauge
+        [max]="100"
+        [dialStartAngle]="180"
+        [dialEndAngle]="0"
+        [value]="gameRating"
+        [animated]="true"
+        [color]="getColor"
+        [animationDuration]="2"
+      >
+      </mwl-gauge>
+      <div class="absolute top-36 text-xl font-semibold right-20 text-gray-200">
+        <a href="{{ game.metacritic_url }}" target="_blank"> Metacritic </a>
+      </div>
+    </div>
+  </div>
+  <app-game-tabs [game]="game"></app-game-tabs>
+</div>
+
+<!-- <div class="relative">
+  <div class="filter blur-md">
+    <img
+      class="w-full h-96 overflow-hidden"
+      src="https://media.istockphoto.com/photos/digital-eye-wave-lines-stock-background-stock-video-picture-id1226241649"
+      alt=""
+    />
+  </div>
+  <div
+    class="
+      text-gray-50
+      font-semibold
+      text-lg
+      justify-center
+      items-center
+      text-center
+      absolute
+      inset-x-0
+      bottom-0
+    "
+  >
+    <div>
+      <div
+        class="
+          flex flex-col
+          justify-center
+          items-center
+          space-y-3
+          absolute
+          top-50
+        "
+      >
+        <h2>Game Header</h2>
+        <h3>Release: 23 jun 1992</h3>
+        <p>
+          <span>Genre</span>
+        </p>
+        <div class="absolute right-0 top-0">
+          <mwl-gauge
+            [max]="70"
+            [dialStartAngle]="180"
+            [dialEndAngle]="0"
+            [value]="gameRating"
+            [animated]="true"
+            [color]="getColor"
+            [animationDuration]="2"
+          >
+          </mwl-gauge>
+          <a href="" target="_blank"> Metacritic </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
